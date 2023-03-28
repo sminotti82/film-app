@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <div class="container">
+        <header>
+            <div class="header_title"><h1>UNIVERS-MOVIES</h1></div>
+            <div class="imgLogo">
+                <i class="fa-solid fa-clapperboard"></i>
+            </div>
+             <div class="input">
+                <input type="text" v-model="film"   @keyup.enter="films(film)" placeholder="Ricerca film per titolo">
+             </div>
+        </header>
+        <main>
+                <div  v-if="listaFilm.length > 0" v-for="card in listaFilm"   class="cineCard">
+                    
+                     <div class="copertina">
+                        <img :src="locandina(card.poster_path)" alt="">
+                     </div>
+                     <div  class="covers">
+                       
+                        <div class="title"> <span>TITOLO</span><h3>{{card.title}}</h3></div>
+                        <div class="descrizione">
+                            <span>DESCRIZIONE</span>
+                            <p>
+                                    {{card.overview}}
+                            </p>
+
+                        </div>
+                        <div class="dataRilascio">
+                            <span>ANNO DI USCITA</span>
+                           <h3>{{card.release_date}}</h3>
+                        </div>
+
+                     </div>
+                </div>
+
+                <div :class="listaFilm.length>0?'invisible':'visible'" class="presentazione">
+                        <h3 style="font-size: 1.9em;color: #3d3d3d;">NUOVI FILM OGNI SETTIMANA</h3>
+                        <P style="color: darkorange;font-size: 1.4em;">
+                            Tutte le settimane nuovi film e serie tv. abbonamenti da 1.50€ con pubblicità o da 4.99€ senza pubblicità ed espandibile fino a 2 schermi
+                        </P>
+                        <i style="font-size: 3em; margin-top: 20px;" class="fa-solid fa-video"></i>
+                </div>
+        </main>
+       
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
